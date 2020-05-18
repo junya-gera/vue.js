@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <div id="app">
+    <input type="text" v-model="message">
+    <!--   v-modelを使うと双方向バインディング（どっちからも操作できる）ができる-->
+    <h1>{{message}}</h1>
+    <p>{{counter}}</p>
+    <p @click="counter += 1">+1</p>  <!-- v-onの中身はこういうJavaScript式を書いてもいい -->
+    <p @click="countUp">+1</p>       <!-- これはVue.jsのメソッドを呼び出している -->
+    <p @click="countUp()">+1</p>     <!-- これはJavaScript式のメソッドを呼び出している -->
+  
+    <p>{{lessThanThreeComputed}}</p> <!-- あくまでプロパティなので()はつけない -->
+    <p>{{lessThanThreeMethod()}}</p>
+    
+  </div>
+  <script>
+
+  new Vue({
+	el: "#app",
+  
+  data: {
+  	message: 'こんにちは',
+    counter: 0,
+   /*  lessThanThree: this.counter > 3? "3以上" : "3以下"
+    この表現はできない。dataの中はあくまで静的、初期値しか扱えないから */
+    },
+    
+    methods: {
+      lessThanThreeMethod: function(){
+        return this.counter > 3? "3以上" : "3以下"
+        //メソッドでも↓と同じ処理がされるが、テンプレートが再描画される度に呼び出されるので使わない
+      },
+      countUp: function(){
+      	this.counter += 1;
+      },
+  	},
+    
+    computed: {  //computedプロパティは動的なのでメソッドを書く
+    	lessThanThreeComputed: function (){
+      	return this.counter > 3? "3以上" : "3以下" //あくまでプロパティなのでreturnで値を返す
+        //非同期の中でreturnは使えないので非同期の時はウォッチャを使う
+      }
+    },
+    watch: {
+    	counter: function(){
+      	var vm = this;  //ここのthisはVueインスタンス自体を示す
+        setTimeout(function(){  //setTimeoutは非同期通信
+        	vm.counter = 0
+        },3000)
+      }
+    }
+  
+})
+  
+  </script>
+
+    
+</body>
+</html>

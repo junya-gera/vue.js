@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style type="text/css">
+   .red{
+      color: red;
+    }
+    .bg-blue{
+      background-color: blue;
+    }
+  
+  
+  </style>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<div id="app">
+<!-- クラスをデータにバインディングする方法その１.
+オブジェクトを渡し真偽値を使って適応させるクラスを動的に切り替える -->
+  <h1 :class="classObject">Hello!</h1>
+  <button @click="isActive = !isActive">切り替え</button>
+<!-- クラスをデータにバインディングする方法その2.
+配列を使って使いたいクラスを並べる-->
+<h1 :class="[color,bg]">高木さん</h1>
+<h1 :class="[{red: isActive},bg]">湾内絹保</h1>
+<!-- スタイル属性をオブジェクトを用いて動的にバインディングする -->
+<h1 :style="{color: textColor,'background-color': bgColor}">佐倉千代</h1>
+<!-- スタイルオブジェクトをデータに書いてコードを見やすくする -->
+<h1 :style="styleObject">食蜂操祈</h1>  <!-- dataに書いてオブジェクトを持ってくる。HTML側はスッキリさせる方がいい -->
+<!-- 複数のスタイルを配列構文を用いて適用させる -->
+<h1 :style="[styleObject,baseStyles]">天上院桂</h1> 
+
+
+  
+  
+</div>
+
+
+  <script>
+  new Vue ({
+	el: '#app',
+  data: {
+  	isActive: true,
+    color: 'red',
+    bg: 'bg-blue',
+    textColor: '#fff',
+    bgColor: 'green',
+    styleObject: {
+    	color: 'yellow',
+      'background-color': 'black'
+    },
+    baseStyles: {
+   		'font-size': '60px'
+    }
+  },
+  computed: {
+  	classObject: function(){
+    	return{
+        red: this.isActive,
+        'bg-blue': !this.isActive  //ケバブケースの場合''をつける。thisの前に!
+      }
+    },
+    
+  }
+
+})
+  
+  </script>
+</body>
+</html>

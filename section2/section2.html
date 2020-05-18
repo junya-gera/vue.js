@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>section1</title>
+</head>
+<body>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <div id="app">
+    <a v-bind="twitterObject">Twitter</a>     <!-- v-bindでオブジェクトを扱える -->
+    
+    <p>現在{{ number }}回クリックされています</p>
+    <button v-on:click="countUp">カウントアップ</button> 
+    <!-- v-onの後にはDOMイベントを書く -->
+    <button v-on:[event]="countUp">カウントアップ</button>
+    <!--     eventをdataで指定し[]を使うことで動的に設定可能   -->
+    <button @[event]="countUp">カウントアップ</button>
+    <!--     v-on:は@に省略可能。どちらかに統一する。-->    
+    
+    
+    <p v-on:mousemove="changeMousePosition(10, $event)">マウスを乗せてください
+    <span v-on:mousemove.stop>反応しないでください</span></p> 
+<!--     イベントオブジェクトを引数で使うときは$eventとする-->
+<!-- DOMイベントの後につけるのがイベント修飾子。
+stop →event.stopPropagation()というイベントを起こさないようにするメソッドを簡単に使える
+prevent →eventPrevent()というHTMLがもともと持っている挙動<a>などをさせないメソッドを簡単に使える-->
+    <p>X: {{x}},Y: {{y}}</p>
+    <input type="text" v-on:keyup.enter="myAlert">
+    <!-- イベント修飾子keyupはキーが押されて離された時に発火。
+    キー修飾子としてキーの名前を書くと発火するキーを選別することができる。←ゲームに使える？？？暗号とか -->
+  </div>  
+
+
+
+
+  <script>
+
+
+    new Vue ({
+      el: '#app',
+      data: {
+      
+        twitterObject: {                 //オブジェクト（Rubyでいうハッシュ）を作れる
+          href: 'https://twitter.com',
+          id: 31
+        },
+        
+        number: 0,			//変数はdataの中に入れる
+      	x: 0,
+        y: 0,
+        event: 'click'
+      },
+      methods: {
+        countUp: function(){
+          this.number += 1
+      },
+      	changeMousePosition: function(divideNumber,event){		//eはイベントオブジェクト取得
+        	this.x = event.clientX / divideNumber;				//console.log,検証で中身が見れる
+          this.y = event.clientY / divideNumber;
+        },
+        myAlert(){
+        	alert('アラート！')
+        }
+      
+    
+      }
+
+    })
+
+
+
+  </script>
+  
+</body>
+</html>

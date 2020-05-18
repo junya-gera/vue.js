@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+  <!-- このdivがテンプレートであり、Vue.jsはこのdivを見て、なんやかんやの処理をして、最終的にHTMLファイルとして出力する。 -->
+<div id="app">
+  <p v-text="message"></p>  <!-- 'v-'がついたVue専用の属性をディレクティブという。この場合15,16行目は全く同じ -->
+  <p>{{message}}</p>   <!-- Vueではdataの中の属性のみ書く(data.message,this.messageにならない) -->
+                       <!-- {{}}の中にはJSの構文をそのまま書ける -->
+  <p>{{number + 3}}</p>
+  <p>{{ok? 'yes' : 'no'}}</p>
+  <button v-on:click="reverseMessage">メッセージ反転</button>
+  <p>{{ sayHi() }}</p>
+  <div v-html="html"></div>  <!-- 変数の中身を出力。XSSされる恐れがあるのでユーザーが入力できるHTMLでは使用しない -->
+  <a v-bind:href="url">Google</a>
+</div>
+
+
+<script>
+  
+ new Vue ({     // この1文がVueの心臓部分
+	el: '#app',   // どの部分を操作するかを示す
+  data: {
+  	message: 'Hello World!',
+    number: 3,
+    ok: true,
+    html: 'h1です',
+    url: 'https://google.com'
+  },
+  methods: {
+  	reverseMessage: function(){
+      this.message = this.message.split('').reverse().join('')  //インスタンス内で自分のインスタンスを呼び出す際はthisが必要になる
+    }
+  },
+  methods: {
+    sayHi: function(){
+      return 'Hi';
+    }
+  }
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app1">
+  <my-component></my-component>
+  <my-component></my-component>
+  <my-component></my-component>
+  <hr>
+</div>
+
+<div id="app2">
+  <my-component></my-component>
+  <my-component></my-component>
+  <my-component></my-component>
+</div>
+  
+
+
+<script>
+
+// componentを定義したらその下でいつでも使えるようになる
+Vue.component('my-component',{  //引数1つめは名前、2つめはオブジェクト
+	data: function(){   //componentではdataは関数にする
+  	return {   //returnでオブジェクトを返す
+  	number: 12
+  	}
+  },
+  template: '<p>いいね{{number}}<button @click="increment">+1</button></p>',
+  // dataが関数なのでそれぞれのcomponentのメモリを参照するので独立して+1
+	methods: {
+  	increment: function(){
+    	this.number += 1
+    }
+  }	
+})
+
+// ローカル登録。app2でしか使えない。
+// ここで宣言したコンポーネント変数を使いたいVueインスタンスで呼び出せば使える
+var component = {
+	data: function(){
+  	return {
+    	number: 13
+    }
+  },
+  template: '<p>いいね{{number}}<button @click="increment">+1</button></p>',
+	methods: {
+  	increment: function(){
+    	this.number += 2
+    }
+	}
+}
+
+new Vue ({
+	el: '#app1' //elだけはこちらで定義
+})
+
+new Vue ({
+	el: '#app2',
+	components: { //componentsで変数componentを登録。ここ（app2）でしか適用されない(ローカル登録  )。
+  	'my-component': component  //左は'#app2'の中でタグとして使う名前（カスタムタグ名）。右は46行目のvarで変数にしたcomponent
+  }  
+})
+
+
+// Vue.componentならグローバル登録。
+// var component みたいに変数に代入してたらローカル登録。
+// アイコンなど極端に汎用性の高いものでなければ、カスタムタグ名を汚染しないローカル登録の方がいい。
+
+
+</script>
+</body>
+</html>

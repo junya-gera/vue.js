@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app1">
+ <p>{{message}}</p>
+  
+</div>
+
+
+<div id="app2">
+  <p>{{message}}</p>
+  <button @click="changeMessage1">インスタンス1のmessageを変更</button>
+</div>
+
+<div id="app3"></div>
+
+
+<script>
+//  dataだけを別で定義することができる
+var data = {
+  	message: 'インスタンス1',
+    name: 'じゅんじゅん'
+  }
+
+//Vueインスタンスが作られた時、dataの中のプロパティ全てにgetterとsetterを与える
+var vm1 = new Vue ({   //Vueインスタンスを変数に入れる
+  data: data  //変数のdata
+}).vm1.$mount('#app1');	//$mountでVueインスタンスにelを追加。elを動的に使いたいときなど。
+console.log(data === vm1.$data) // true  $dataでdataの中身を取得することができる
+console.log(vm1);  //vm1の次につけることができるインスタンスプロパティ、インスタンスメソッドが確認できる。$をつける
+
+// Vueインスタンスは複数作ることができる。ただしお互いが独立している時に使う。関わるとややこしい。
+new Vue ({
+  data: {
+  	message: 'インスタンス2'
+  },
+  methods: {
+  	changeMessage1: function(){
+    	vm1.message = 'インスタンス2から変えました'   //インスタンス1の内容を変数を使って外側から変えられる
+    }
+  }
+
+}).$mount('#app2')  //$mountはVueインスタンスを変数に入れなくても最後につけたらいい
+
+new Vue({
+}).$mount('#app3')
+
+
+</script>
+</body>
+</html>

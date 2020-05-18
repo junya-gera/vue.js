@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <div id="app1"></div>
+  <div id="app2"></div>
+
+
+
+  <script>
+  new Vue ({
+    
+    template:'<h1>templateタグ</h1>',	//templateタグにHTMLを記述してそのまま文字列を表示させる
+      // ただし行がたくさんになると大変なのであまり使わない
+  }).$mount('#app1')
+
+
+  new Vue ({
+  	data: {
+      name: 'じゅんじゅん'
+    },
+    //↓render以外の書き方でも（templateタグ、HTML）最終的に全てrender関数にコンパイルされる
+    render: function(createElement){  //render関数によってVNode（仮想ノード）を作っている
+      return createElement('h1','こんにちは、' + this.name)
+    }
+  }).$mount('#app2')
+  
+  //documentはブラウザが用意している。HTMLをブラウザが受け取った時にDOMに変換したもの。
+  
+  
+  
+  </script>
+</body>
+</html>
