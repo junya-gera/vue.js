@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <div id="app">
+    <p>{{ message }}</p>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app', //mountする要素。10行目
+      data: { // アプリで使用するデータ
+        message: 'Vue.js!',  // message は変化を検知できるようになる
+        
+        // dataオプションの直下のプロパティは後から追加できないので、内容が決まってなくても初期値や空データが必要
+        // なるべく後から代入されるデータと同じ型で定義する 
+        newTodoText = '', 
+        visitCount = 0
+      }
+    })
+  </script>
+
+  <!-- JavaScriptのデータを変えるだけでHTMLの描画内容も一緒に変わる→データバインディング
+        反応のできるデータのことをリアクティブデータという(17行目)
+  -->
+</body>
+</html>
+
