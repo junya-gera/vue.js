@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <div id="app">
+    <!-- テキストのデータバインディング -->
+    <p>{{ message.value }}</p>  <!-- オブジェクトのプロパティ -->
+    <p>{{ message.value.length }}</p>
+    <p>{{ list[0] }}</p>  <!-- 配列の要素 -->
+    <p>{{ list[num] }}</p>
+
+    <!-- Mustacheの中にJavaScriptの式が記述できる -->
+    <p>{{ 1 + 1 }}</p>
+    <!-- これは式ではなく文なのでエラーが出る
+    <p>{{ var foo = message }}</p>
+    JSの構文で変数に代入するとき、=の右側に来るものが式 -->
+
+    <!-- 属性のデータバインディング。v-bind:を使う。:に省略できる -->
+    <input type="text" v-bind:value="message.value">
+
+    <!-- .prop修飾子 DOMのプロパティと直接バインドする -->
+    <div v-bind:text-content.prop="message.value"></div>
+    
+
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message : {
+          value: 'Hello,Vuejs!'
+        },
+        list: ['かぐや','ちか','ミコ'],
+        num: 2
+      }
+    })
+
+  </script>
+</body>
+</html>
