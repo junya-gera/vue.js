@@ -47,6 +47,9 @@
   </ul>
   <ul>
   <div v-for="fruit in fruits" key="fruit">  <!-- key属性をつける事でdiv1つ1つがユニークなものとなる。templateタグには使えない-->
+  <!-- <div v-for="(fruit,index) in fruits" key="index"> key属性をindexにしてしまうと仮に先頭を削除した場合indexが1つずれてしまうので
+    ユニークではなくなってしまう。 -->
+  <!-- また、valueの値が同じものがある場合もユニークではなくなる。この場合、key属性を"value_id"のようにする必要がある -->
       <li>{{fruit}}</li>
       <hr>
     </div>
