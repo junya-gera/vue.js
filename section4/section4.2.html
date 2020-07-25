@@ -33,8 +33,10 @@
   
   //documentはブラウザが用意している。HTMLをブラウザが受け取った時にDOMに変換したもの。
   
-  
-  
+  var dir = document.createElement('div');
+  // DOM要素にアクセスするのはとても遅い。JSのオブジェクトを作るのは早い。仮装DOMとしてJSオブジェクトを作っておいて、変更があった時仮装DOMと見比べ、
+  // 変更点だけを実際のDOMに反映させる。
+
   </script>
 </body>
 </html>
