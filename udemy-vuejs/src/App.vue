@@ -4,7 +4,8 @@
     <h2>{{ number }}</h2>
     <!-- 子コンポーネントに渡したいデータを属性にする(左のnumber) -->
     <!-- HTMLのプロパティはケバブケースで書く -->
-    <LikeNumber :total-number="number"></LikeNumber> <!-- グローバル登録 -->
+    <!-- v-on:my-click→子コンポーネントで作ったカスタムイベント。 $event→子コンポーネントから送られたデータ -->
+    <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber> <!-- グローバル登録 -->
     <LikeNumber :total-number="number"></LikeNumber> <!-- グローバル登録 -->
   </div>
 </template>
