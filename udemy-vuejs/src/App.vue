@@ -1,28 +1,23 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <LikeHeader></LikeHeader> <!-- ローカル登録 -->
+    <LikeNumber></LikeNumber> <!-- グローバル登録 -->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import LikeHeader from './components/LikeHeader.vue';
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+export default { // この中にコンポーネントのオブジェクト(dataとかcomputedとか)を記述する
+  components: { // コンポーネントのローカル登録
+    // LikeHeader: LikeHeader  ES6なら同じ名前にするなら下のように省略できる
+    LikeHeader
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+  div{
+    border: 1px solid blue;
+  }
 </style>
