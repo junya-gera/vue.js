@@ -50,7 +50,7 @@
     },
     watch: {
     	counter: function(){
-      	var vm = this;  //ここのthisはVueインスタンス自体を示す
+      	var vm = this;  //ここのthisはVueインスタンス自体を示す。watchではthisが使えないので代わりにvm
         setTimeout(function(){  //setTimeoutは非同期通信
         	vm.counter = 0
         },3000)
