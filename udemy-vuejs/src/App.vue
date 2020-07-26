@@ -1,7 +1,11 @@
 <template>
   <div>
     <LikeHeader></LikeHeader> <!-- ローカル登録 -->
-    <LikeNumber></LikeNumber> <!-- グローバル登録 -->
+    <h2>{{ number }}</h2>
+    <!-- 子コンポーネントに渡したいデータを属性にする(左のnumber) -->
+    <!-- HTMLのプロパティはケバブケースで書く -->
+    <LikeNumber :total-number="number"></LikeNumber> <!-- グローバル登録 -->
+    <LikeNumber :total-number="number"></LikeNumber> <!-- グローバル登録 -->
   </div>
 </template>
 
@@ -12,6 +16,11 @@ export default { // この中にコンポーネントのオブジェクト(data�
   components: { // コンポーネントのローカル登録
     // LikeHeader: LikeHeader  ES6なら同じ名前にするなら下のように省略できる
     LikeHeader
+  },
+  data() {
+    return {
+      number: 10
+    }
   }
 }
 </script>
