@@ -2,9 +2,9 @@
   <div>
     <LikeHeader header-text="hello">  <!-- ローカル登録 -->
       <!-- 子コンポーネントタグの中身のHTMLは子コンポーネントのslotタグに置き換わる -->
-      <h3>みなさん</h3>
-      <template v-slot:title>
+      <template v-slot:title="slotProps">
         <h1>トータルのいいね数!</h1>
+        <h2>{{ slotProps.user.lastName + slotProps.user.firstName }} さん</h2>
       </template>
       <h3>よろしくお願いします</h3>
       <template v-slot:number>
