@@ -4,6 +4,7 @@
       <!-- slotが置き換わる部分が何もない時に表示される(フォールバックコンテンツ) -->
       <h2>デフォルトのタイトル</h2> 
     </slot>
+    <slot></slot> <!-- 親でtemplateに入っていないHTMLタグは全てdefaultという名前つきslotにまとめられここに入る -->
     <slot name="number">
       <h2>いいねの数</h2>
     </slot>
