@@ -7,7 +7,7 @@
         <h2>{{ slotProps.user.lastName + slotProps.user.firstName }} さん</h2>
       </template>
       <h3>よろしくお願いします</h3>
-      <template #number> <!-- v-slotは#に置き換えられる -->
+      <template #number> <!-- v-slotは#に置き換えられる  -->
         <h2>{{ number }}</h2>
       </template>
     </LikeHeader>
@@ -16,21 +16,30 @@
     <!-- v-on:my-click→子コンポーネントで作ったカスタムイベント。 $event→子コンポーネントから送られたデータ -->
     <LikeNumber :total-number="number" @my-click="number = $event"></LikeNumber> <!-- グローバル登録 -->
     <LikeNumber :total-number="number"></LikeNumber> <!-- グローバル登録 -->
+
+
+    <button @click="currentComponent = 'Home'">Home</button>
+    <button @click="currentComponent = 'About'">About</button>
+    <!-- 動的コンポーネント componentタグのis属性に動的にv-bindでコンポーネント名を入れるとそれがここに表示される -->
+    <component :is="currentComponent"></component>
   </div>
 </template>
 
 <script>
 import LikeHeader from './components/LikeHeader.vue';
+import About from './components/About.vue';
 
 export default { // この中にコンポーネントのオブジェクト(dataとかcomputedとか)を記述する
   components: { // コンポーネントのローカル登録
     // LikeHeader: LikeHeader  ES6なら同じ名前にするなら下のように省略できる
-    LikeHeader
+    LikeHeader,
+    About
   },
   data() {
     return {
       number: 10,
       title: "title",
+      currentComponent: 'Home',
     }
   }
 }

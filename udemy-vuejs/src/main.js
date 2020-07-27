@@ -3,6 +3,7 @@ import Vue from 'vue';
 import App from './App.vue' ;
 
 import LikeNumber from './components/LikeNumber.vue';
+import Home from './components/Home.vue';
 
 Vue.config.productionTip = false
 
@@ -10,6 +11,7 @@ Vue.config.productionTip = false
 // 第二引数はdataなどのオブジェクトになるはずだが、LikeNumberという名前のコンポーネントをオブジェクトとしてimportしてあるので、
 // LikeNumber.vueという単一ファイルコンポーネントをどこでも使えるようになった
 Vue.component('LikeNumber',LikeNumber); 
+Vue.component('Home',Home);
 
 new Vue({
   render: h => h(App), // render関数でAppというオブジェクト(元はコンポーネント)を仮想ノードにしている
