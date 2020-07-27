@@ -7,7 +7,7 @@
         <h2>{{ slotProps.user.lastName + slotProps.user.firstName }} さん</h2>
       </template>
       <h3>よろしくお願いします</h3>
-      <template v-slot:number>
+      <template #number> <!-- v-slotは#に置き換えられる -->
         <h2>{{ number }}</h2>
       </template>
     </LikeHeader>
