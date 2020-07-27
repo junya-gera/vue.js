@@ -20,8 +20,13 @@
 
     <button @click="currentComponent = 'Home'">Home</button>
     <button @click="currentComponent = 'About'">About</button>
-    <!-- 動的コンポーネント componentタグのis属性に動的にv-bindでコンポーネント名を入れるとそれがここに表示される -->
-    <component :is="currentComponent"></component>
+
+    <!-- 動的コンポーネントは本来切り替えるたびにインスタンスが破壊と再生成されている。
+         キャッシュ(計算中の数値、inputの中身など)させたい場合はkeep-aliveタグの中にcomponentタグを入れれば残る -->
+    <keep-alive>
+      <!-- 動的コンポーネント componentタグのis属性に動的にv-bindでコンポーネント名を入れるとそれがここに表示される -->
+      <component :is="currentComponent"></component>
+    </keep-alive>
   </div>
 </template>
 
