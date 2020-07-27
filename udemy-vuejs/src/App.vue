@@ -2,7 +2,7 @@
   <div>
     <LikeHeader header-text="hello">  <!-- ローカル登録 -->
       <!-- 子コンポーネントタグの中身のHTMLは子コンポーネントのslotタグに置き換わる -->
-      <template v-slot:title="slotProps">
+      <template v-slot:[title]="slotProps">
         <h1>トータルのいいね数!</h1>
         <h2>{{ slotProps.user.lastName + slotProps.user.firstName }} さん</h2>
       </template>
@@ -29,7 +29,8 @@ export default { // この中にコンポーネントのオブジェクト(data�
   },
   data() {
     return {
-      number: 10
+      number: 10,
+      title: "title",
     }
   }
 }
