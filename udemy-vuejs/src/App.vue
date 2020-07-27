@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LikeHeader>  <!-- ローカル登録 -->
+    <LikeHeader header-text="hello">  <!-- ローカル登録 -->
       <!-- 子コンポーネントタグの中身のHTMLは子コンポーネントのslotタグに置き換わる -->
       <div>
         <h1>トータルのいいね数!</h1>
