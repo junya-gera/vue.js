@@ -1,10 +1,12 @@
 <template>
   <div>
-    <slot>
+    <slot name="title">
       <!-- slotが置き換わる部分が何もない時に表示される(フォールバックコンテンツ) -->
       <h2>デフォルトのタイトル</h2> 
     </slot>
-    <h2>{{headerText}}</h2>
+    <slot name="number">
+      <h2>いいねの数</h2>
+    </slot>
   </div>
 </template>
 

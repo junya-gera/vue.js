@@ -2,10 +2,12 @@
   <div>
     <LikeHeader header-text="hello">  <!-- ローカル登録 -->
       <!-- 子コンポーネントタグの中身のHTMLは子コンポーネントのslotタグに置き換わる -->
-      <div>
+      <template v-slot:title>
         <h1>トータルのいいね数!</h1>
+      </template>
+      <template v-slot:number>
         <h2>{{ number }}</h2>
-      </div>
+      </template>
     </LikeHeader>
     <!-- 子コンポーネントに渡したいデータを属性にする(左のnumber) -->
     <!-- HTMLのプロパティはケバブケースで書く -->
