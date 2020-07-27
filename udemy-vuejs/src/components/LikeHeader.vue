@@ -1,6 +1,9 @@
 <template>
   <div>
-    <slot></slot>
+    <slot>
+      <!-- slotが置き換わる部分が何もない時に表示される(フォールバックコンテンツ) -->
+      <h2>デフォルトのタイトル</h2> 
+    </slot>
     <h2>{{headerText}}</h2>
   </div>
 </template>
