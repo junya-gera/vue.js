@@ -27,6 +27,13 @@
       <!-- 動的コンポーネント componentタグのis属性に動的にv-bindでコンポーネント名を入れるとそれがここに表示される -->
       <component :is="currentComponent"></component>
     </keep-alive>
+    <div>
+      <h2>イベントのフォーム</h2>
+      <label for="title">タイトル</label>
+      <!-- lazy修飾子 入力してフォーカスが外れたらバインディング。全部打ってからバリデーションするときなど -->
+      <input id="title" type="text" v-model.lazy="eventData.title">
+      <p>{{ eventData.title }}</p>
+    </div>
   </div>
 </template>
 
@@ -45,6 +52,9 @@ export default { // この中にコンポーネントのオブジェクト(data�
       number: 10,
       title: "title",
       currentComponent: 'Home',
+      eventData: {
+        title: 'タイトル'
+      }
     }
   }
 }
