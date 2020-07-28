@@ -38,6 +38,11 @@
       <!-- number修飾子 type="numberは最初numberでも入力したらstringに変わる。それを防いで常にnumber型にするのがnumber修飾子" -->
       <input id="maxNumber" type="number" v-model.number="eventData.maxNumber">
       <p>{{ eventData.maxNumber }}</p>
+
+      <label for="host">主催者</label>
+      <!-- trim修飾子 頭とお尻の空白や改行を無視する -->
+      <input id="host" type="text" v-model.trim="eventData.host">
+      <p>{{ eventData.host }}</p>
     </div>
   </div>
 </template>
@@ -59,7 +64,8 @@ export default { // この中にコンポーネントのオブジェクト(data�
       currentComponent: 'Home',
       eventData: {
         title: 'タイトル',
-        maxNumber: 0
+        maxNumber: 0,
+        host: ''
       }
     }
   }
