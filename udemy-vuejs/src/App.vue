@@ -33,6 +33,11 @@
       <!-- lazy修飾子 入力してフォーカスが外れたらバインディング。全部打ってからバリデーションするときなど -->
       <input id="title" type="text" v-model.lazy="eventData.title">
       <p>{{ eventData.title }}</p>
+
+      <label for="maxNumber">最大人数</label>
+      <!-- number修飾子 type="numberは最初numberでも入力したらstringに変わる。それを防いで常にnumber型にするのがnumber修飾子" -->
+      <input id="maxNumber" type="number" v-model.number="eventData.maxNumber">
+      <p>{{ eventData.maxNumber }}</p>
     </div>
   </div>
 </template>
@@ -53,7 +58,8 @@ export default { // この中にコンポーネントのオブジェクト(data�
       title: "title",
       currentComponent: 'Home',
       eventData: {
-        title: 'タイトル'
+        title: 'タイトル',
+        maxNumber: 0
       }
     }
   }
